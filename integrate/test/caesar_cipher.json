@@ -1,0 +1,7 @@
+{
+    "testCases": [
+      {"input": "HAL", "expected": "IBM", "shift": 1, "operation": "encrypt"},
+      {"input": "IBM", "expected": "HAL", "shift": -1, "operation": "decrypt"},
+      {"input": "HAL", "expected": "MFQ", "shift": 5, "operation": "encrypt"}
+    ]
+  }

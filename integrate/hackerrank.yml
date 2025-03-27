@@ -1,0 +1,22 @@
+version: 1.0
+configuration:
+  has_webserver: false
+  scoring:
+    command: |
+      rm -f report.xml && \
+      ./build && \
+        ./test/bin/caesar_cipher_test \
+          --log_format=JUNIT \
+          --log_sink=report.xml \
+          --report_level=detailed
+    files:
+      - report.xml
+  readonly_paths:
+    - test/*
+  ide_config:
+    default_open_files:
+      - src/include/caesar_cipher.cpp
+    project_menu:
+      run: ./build && ./bin/caesar_cipher_app input.json
+      install: ./build
+      test: ./build && ./test/bin/caesar_cipher_test
