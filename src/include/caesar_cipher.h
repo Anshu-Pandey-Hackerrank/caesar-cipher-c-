@@ -8,6 +8,9 @@
 
 
 class CaesarCipher {
+    private:
+        std::array<char, 3> start;
+
     public:
         static std::string up1(const std::string& word);
         static std::string backward(const std::string& word);
@@ -16,7 +19,7 @@ class CaesarCipher {
         std::string fourLess(const std::string& word) const;
 
     public:
-        CaesarCipher() {}
+        CaesarCipher();
 
         std::string two_down(const std::string& word) const;
         static std::string twoUp(const std::vector<int>& word);

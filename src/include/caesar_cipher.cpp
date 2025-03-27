@@ -51,30 +51,27 @@ std::string CaesarCipher::forward(const std::vector<std::string>& word) const {
 
 
 std::string CaesarCipher::three(int dir, const std::string& word) {
-    std::vector<int> ascii(word.size());
-    std::transform(
-        word.begin(), word.end(), ascii.begin(),
-        [] (char c) -> int { return c; }
-    );
-
-    std::vector<int> cipher(word.size());
-    std::transform(
-        ascii.begin(), ascii.end(), cipher.begin(),
-        [&] (int c) { return c + ((dir > 33) ? 3 : - 3); }
-    );
-
-    std::string result(word.size(), '\0');
-    std::transform(
-        cipher.begin(), cipher.end(), result.begin(),
-        [] (int c) { return static_cast<char>(c); }
-    );
-
+    std::string result = word;
+    int shift = (dir > 0) ? 3 : -3;
+    
+    for (size_t i = 0; i < result.size(); i++) {
+        int letter_int = result[i] - 'A';
+        letter_int = (letter_int + shift + 26) % 26;  // Ensure positive mod
+        result[i] = static_cast<char>(letter_int + 'A');
+    }
+    
     return result;
 }
 
 
 std::string CaesarCipher::fourLess(const std::string& word) const {
-    return this->backward(CaesarCipher::backward(backward(word)));
+    std::string result = word;
+    for (size_t i = 0; i < result.size(); i++) {
+        int letter_int = result[i] - 'A';
+        letter_int = (letter_int - 4 + 26) % 26;  // Subtract 4, ensure positive
+        result[i] = static_cast<char>(letter_int + 'A');
+    }
+    return result;
 }
 
 

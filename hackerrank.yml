@@ -4,7 +4,7 @@ configuration:
   scoring:
     command: |
       rm -f report.xml && \
-      ./build && \
+      ./build.sh && \
         ./test/bin/caesar_cipher_test \
           --log_format=JUNIT \
           --log_sink=report.xml \
@@ -17,6 +17,6 @@ configuration:
     default_open_files:
       - src/include/caesar_cipher.cpp
     project_menu:
-      run: ./build && ./bin/caesar_cipher_app input.json
-      install: ./build
-      test: ./build && ./test/bin/caesar_cipher_test
+      run: ./build.sh && ./bin/caesar_cipher_app input.json
+      install: chmod +x build.sh && bash build.sh
+      test: ./build.sh && ./test/bin/caesar_cipher_test --log_format=JUNIT --log_sink=report.xml --report_level=detailed
