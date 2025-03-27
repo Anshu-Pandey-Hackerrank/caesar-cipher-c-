@@ -1,5 +1,5 @@
 {
   "operation": "encrypt",
-  "shift": 3,
+  "method": "up1",
   "text": "DEFENDTHEEASTWALL"
 }

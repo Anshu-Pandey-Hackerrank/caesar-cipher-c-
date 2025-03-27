@@ -22,8 +22,16 @@ add_executable(caesar_cipher_app
 )
 target_link_libraries(caesar_cipher_app caesar_cipher_lib)
 
-# Include test directory
-add_subdirectory(test)
+# Add the test executable
+add_executable(caesar_cipher_test 
+    test/caesar_cipher_tests.cpp
+)
+target_link_libraries(caesar_cipher_test caesar_cipher_lib)
+
+# Add test targets
+enable_testing()
+add_test(NAME CaesarCipherTest COMMAND caesar_cipher_test)
 
 # Install targets
 install(TARGETS caesar_cipher_app DESTINATION bin)
+install(TARGETS caesar_cipher_test DESTINATION test/bin)
